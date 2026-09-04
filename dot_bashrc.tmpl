@@ -174,14 +174,8 @@ fi
 
 export BASH_SILENCE_DEPRECATION_WARNING=1
 
-# Node version manager scripts.
-export NVM_DIR="$HOME/.nvm"
-  [ -s "/opt/homebrew/opt/nvm/nvm.sh" ] && \. "/opt/homebrew/opt/nvm/nvm.sh"  # This loads nvm
-  [ -s "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm" ] && \. "/opt/homebrew/opt/nvm/etc/bash_completion.d/nvm"  # This loads nvm bash_completion
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
-# depot_tools
-export PATH="$PATH:/$HOME/Documents/Repo/depot_tools"
+# nvm script
+\. "$HOME/.nvm/nvm.sh"
 {{ else if eq .chezmoi.os "linux" -}}
 # >>> Add system wide applications >>>
 export PATH=$PATH:/{{ .chezmoi.homeDir }}/nodejs/bin
@@ -189,8 +183,4 @@ export PATH=$PATH://use/local/go/bin
 export PATH=$PATH:/{{ .chezmoi.homeDir }}/.local/bin
 # <<< Add system wide applications <<<
 
-# ros 2 source
-source /opt/ros/humble/setup.bash
-export ROS_DOMAIN_ID=0
-export ROS_LOCALHOST_ONLY=1
 {{- end }}
